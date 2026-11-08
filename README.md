@@ -9,8 +9,6 @@
 
 [![Android](https://img.shields.io/badge/Platform-Android%208.0%2B%20(API%2026--34)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-100%25-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
-[![Groq LPU](https://img.shields.io/badge/Groq%20LPU-Llama%203.3%2070B-F55036?style=for-the-badge&logo=groq&logoColor=white)](https://groq.com)
-[![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Jessica%20Voice-black?style=for-the-badge&logo=elevenlabs&logoColor=white)](https://elevenlabs.io)
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
@@ -27,27 +25,7 @@
         <img src="assets/screenshots/blue_v5_home.png" width="100%" alt="Blue HUD Home Screen" /><br/>
         <b>Cyberpunk Neon Voice HUD</b>
       </td>
-      <td align="center" width="33%">
-        <img src="assets/screenshots/blue_settings.png" width="100%" alt="Settings & Memory Dashboard" /><br/>
-        <b>Memory & Workflow Dashboard</b>
-      </td>
-      <td align="center" width="33%">
-        <img src="assets/screenshots/blue_setup.png" width="100%" alt="Setup Permissions Sheet" /><br/>
-        <b>1-Tap Permissions Setup</b>
-      </td>
-    </tr>
     <tr>
-      <td align="center" width="33%">
-        <img src="assets/screenshots/blue_reels_control.png" width="100%" alt="Instagram Reels Hands-Free Control" /><br/>
-        <b>Hands-Free Reels Navigation</b>
-      </td>
-      <td align="center" width="33%">
-        <img src="assets/screenshots/siri_pill.png" width="100%" alt="Dynamic Floating Pill HUD" /><br/>
-        <b>Dynamic Floating Pill HUD</b>
-      </td>
-      <td align="center" width="33%">
-        <img src="assets/screenshots/jarvis_hud.png" width="100%" alt="Arc Reactor Assistive Overlay" /><br/>
-        <b>Arc Reactor System Overlay</b>
       </td>
     </tr>
   </table>
@@ -258,9 +236,6 @@ See [PERMISSIONS_AND_LIMITATIONS.md](PERMISSIONS_AND_LIMITATIONS.md) for full au
 Crafted with ❤️ by **[Sarath Chandra](https://github.com/SarathChandra26)**.
 
 - **GitHub**: [@SarathChandra26](https://github.com/SarathChandra26)
-- **LinkedIn**: [Sarath Chandra](https://www.linkedin.com/in/sarathchandra26)
-
----
 
 ## 📄 License
 
