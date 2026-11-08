@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Microphone for speech recognition -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Contacts and calling -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- Foreground service for wake-word and speech listening -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+    <!-- Post notifications (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Do Not Disturb (requires ACCESS_NOTIFICATION_POLICY) -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!-- Internet — used ONLY by Google's SpeechRecognizer when on-device recognition unavailable -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Camera — required by CameraManager to access flashlight -->
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+
+    <!-- Vibrate for tactile feedback -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Setting alarms and timers -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <!-- System overlay window for floating HUD -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- SMS messaging -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- Query all packages to discover and launch installed applications by voice -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Jarvis">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Register as default assistant candidate / voice trigger -->
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_COMMAND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.voice_interaction_service"
+                android:value=".JarvisAssistInteractionService" />
+        </activity>
+
+        <!-- Setup / Permissions guidance activity -->
+        <activity
+            android:name=".ui.setup.SetupActivity"
+            android:exported="false" />
+
+        <!-- AccessibilityService for gestures, navigation, text insertion -->
+        <service
+            android:name=".accessibility.JarvisAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- Foreground service for continuous wake-word listening ("Hey Jarvis") -->
+        <service
+            android:name=".speech.VoiceListeningService"
+            android:foregroundServiceType="microphone"
+            android:exported="false" />
+
+        <!-- Quick Settings Tile for one-tap voice activation from notification shade -->
+        <service
+            android:name=".tile.JarvisTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_foreground"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Device Assistant Activity (activated by holding Power button) -->
+        <activity
+            android:name=".assist.JarvisAssistActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Incoming Call BroadcastReceiver -->
+        <receiver
+            android:name=".telephony.IncomingCallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Floating HUD Assistive Orb service (floats over Instagram Reels, games, etc.) -->
+        <service
+            android:name=".overlay.JarvisOverlayService"
+            android:exported="false" />
+
+        <!-- Notification Listener Service for voice-driven notification & message reading (v2) -->
+        <service
+            android:name=".notifications.JarvisNotificationListenerService"
+            android:label="Jarvis Notification Reader"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

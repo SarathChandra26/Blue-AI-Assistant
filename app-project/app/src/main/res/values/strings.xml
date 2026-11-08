@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BLUE</string>
+    <string name="accessibility_service_label">Blue Voice Control</string>
+    <string name="accessibility_service_description">Allows Blue to perform screen navigation, scrolling, text entry and gesture actions through voice commands. Blue does not collect or transmit screen data.</string>
+    <string name="notification_channel_name">Blue Voice Session</string>
+    <string name="notification_channel_desc">Shown while Blue is actively listening for commands</string>
+    <string name="notification_listening">Blue is listening…</string>
+    <string name="permission_mic">Microphone access is required to hear your voice commands.</string>
+    <string name="permission_contacts">Contacts access is required to call or message people by name.</string>
+    <string name="permission_phone">Phone permission is required to initiate calls.</string>
+</resources>

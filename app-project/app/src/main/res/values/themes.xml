@@ -1,0 +1,11 @@
+<resources>
+    <!-- Base application theme — uses AppCompat as the XML base.
+         The actual Compose theme (JarvisTheme / Material3) is applied in code.
+         android:theme here must be a valid XML theme for the activity window. -->
+    <style name="Theme.Jarvis" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">#FF070B12</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

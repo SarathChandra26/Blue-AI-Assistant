@@ -1,0 +1,42 @@
+# Gradle & Build outputs
+.gradle/
+**/build/
+build/
+*.gradle.cache/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Kotlin / IDE
+.kotlin/
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Android Local & Binaries
+local.properties
+**/local.properties
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Sensitive files / Keys
+*.keystore
+*.jks
+*.key
+*.pem
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.tmp
+*.log
+
+# Scratch test files
+test_jessica.mp3
+app-project/test_jessica.mp3
